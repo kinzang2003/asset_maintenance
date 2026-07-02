@@ -1,0 +1,45 @@
+{
+  "//_comment": "Frappe's Workflow engine turns a DocType's plain 'status' Select field into an enforced state machine with role-gated transitions. This is normally built via the desk UI's Workflow builder (drag-and-drop states/transitions); shown here as the JSON it generates, which is also how you'd ship it as a fixture (see fixtures in hooks.py) so it installs automatically on any site that installs this app.",
+
+  "doctype": "Workflow",
+  "name": "Maintenance Request Workflow",
+  "document_type": "Maintenance Request",
+  "workflow_state_field": "status",
+  "is_active": 1,
+
+  "states": [
+    { "state": "Open", "doc_status": "1", "allow_edit": "Employee" },
+    { "state": "In Progress", "doc_status": "1", "allow_edit": "Employee" },
+    { "state": "Resolved", "doc_status": "1", "allow_edit": "System Manager" },
+    { "state": "Closed", "doc_status": "1", "allow_edit": "System Manager" }
+  ],
+
+  "transitions": [
+    {
+      "state": "Open",
+      "action": "Start Work",
+      "next_state": "In Progress",
+      "allowed": "Employee",
+      "//_note": "Any Employee (typically the assigned technician) can move a request from Open to In Progress."
+    },
+    {
+      "state": "In Progress",
+      "action": "Resolve",
+      "next_state": "Resolved",
+      "allowed": "Employee"
+    },
+    {
+      "state": "Resolved",
+      "action": "Close",
+      "next_state": "Closed",
+      "allowed": "System Manager",
+      "//_note": "Only a manager can formally close out a resolved request -- a simple approval gate, common in real ERP workflows (e.g. expense claims, leave approval)."
+    },
+    {
+      "state": "Resolved",
+      "action": "Reopen",
+      "next_state": "In Progress",
+      "allowed": "System Manager"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# patches.txt
+#
+# Frappe reads this file top-to-bottom during `bench migrate` and runs each
+# listed patch's execute() function exactly once (tracked via tabPatch Log).
+# Order matters if patches depend on each other.
+
+asset_maintenance.patches.v0_0.add_technician_workload_index

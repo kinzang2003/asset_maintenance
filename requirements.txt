@@ -1,0 +1,10 @@
+# requirements.txt
+#
+# Intentionally almost empty. Frappe apps run INSIDE a bench, which already
+# provides frappe, redis, pymysql, rq, etc. as part of the framework itself.
+# You only list packages here that this specific app needs on TOP of what
+# Frappe already ships with.
+#
+# Example of when you WOULD add something here: if this app called an external
+# weather API and needed the `requests` library specifically pinned, or used
+# `pandas` for a heavy data-processing report.

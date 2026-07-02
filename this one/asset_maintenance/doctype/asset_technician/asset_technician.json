@@ -1,0 +1,50 @@
+{
+  "//_comment": "This is the 'master' DocType that Maintenance Request.assigned_technician links to. In ERPNext terms, this is like a simplified Employee/Supplier master — a small reference table other documents point to via Link fields.",
+
+  "doctype": "DocType",
+  "name": "Asset Technician",
+  "module": "Asset Maintenance",
+  "custom": 0,
+  "autoname": "field:technician_name",
+  "//_autoname_field": "Uses the technician_name field value itself as the primary key (name), instead of a generated ID. Fine for small reference tables with unique human-readable names.",
+
+  "fields": [
+    {
+      "fieldname": "technician_name",
+      "fieldtype": "Data",
+      "label": "Technician Name",
+      "reqd": 1,
+      "unique": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "specialty",
+      "fieldtype": "Select",
+      "label": "Specialty",
+      "options": "Hardware\nNetworking\nSoftware\nGeneral",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "contact_number",
+      "fieldtype": "Data",
+      "label": "Contact Number"
+    },
+    {
+      "fieldname": "active",
+      "fieldtype": "Check",
+      "label": "Active",
+      "default": "1"
+    }
+  ],
+
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1
+    },
+    {
+      "role": "Employee",
+      "read": 1, "report": 1
+    }
+  ]
+}

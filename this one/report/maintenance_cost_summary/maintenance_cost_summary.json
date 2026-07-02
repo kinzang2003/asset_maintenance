@@ -1,0 +1,24 @@
+{
+  "//_comment": "Config for a Frappe 'Script Report'. This is what makes the report appear in the desk UI's Report list with filter fields, pointing at the execute() function in the matching .py file.",
+
+  "doctype": "Report",
+  "report_name": "Maintenance Cost Summary",
+  "report_type": "Script Report",
+  "module": "Asset Maintenance",
+  "ref_doctype": "Maintenance Request",
+  "is_standard": "Yes",
+
+  "filters": [
+    {
+      "fieldname": "priority",
+      "label": "Priority",
+      "fieldtype": "Select",
+      "options": "\nLow\nMedium\nHigh\nCritical"
+    },
+    {
+      "fieldname": "from_date",
+      "label": "From Date",
+      "fieldtype": "Date"
+    }
+  ]
+}
